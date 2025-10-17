@@ -1,60 +1,26 @@
-🟢 1. Rentabilidade e Precificação
+1--Rentabilidade e Precificação
 
 Pergunta de negócio:
 
 Estamos cobrando o preço certo pelos anúncios em cada bairro?
 
-O que investigar com SQL:
 
-Calcular o preço médio por bairro e comparar com a ocupação média (usando available no calendar.csv).
 
-Encontrar bairros onde o preço está alto mas a ocupação é baixa — indicando sobrepreço.
-
-Encontrar o oposto: alta ocupação e preço baixo — potencial para reajuste de preço.
-
-🟡 2. Performance de Superhosts
+2-- Performance de Superhosts
 
 Pergunta de negócio:
 
 Hosts “superhost” realmente têm melhor desempenho que os demais?
 
-O que investigar:
 
-Comparar review_scores_rating e reviews_per_month entre host_is_superhost = 't' e 'f'.
-
-Ver se superhosts têm preços maiores, mas mesmo assim mais reservas (ocupação).
-
-Analisar se a taxa de disponibilidade é menor (indicando mais reservas).
-
-🟠 3. Impacto das Avaliações no Preço
+3-- Impacto das Avaliações no Preço x
 
 Pergunta de negócio:
 
 Avaliações altas justificam preços mais caros?
 
-O que investigar:
 
-Agrupar listings por faixas de review_scores_rating (ex: <80, 80–90, >90).
-
-Calcular preço médio (price) em cada faixa.
-
-Ver se há correlação entre notas altas e diárias mais caras.
-
-🔵 4. Otimização de Ofertas
-
-Pergunta de negócio:
-
-Quais tipos de imóvel e localização trazem mais retorno?
-
-O que investigar:
-
-Calcular receita potencial mensal = média de price × dias ocupados.
-
-Comparar receita por room_type e neighbourhood_cleansed.
-
-Identificar combinações (ex: apto inteiro em Copacabana) que geram maior retorno médio.
-
-🟣 5. Sazonalidade de Preços
+4--  Sazonalidade de Preços x 
 
 Pergunta de negócio:
 
@@ -68,7 +34,11 @@ Ver se datas como Natal, Carnaval ou feriados mostram aumento de preço.
 
 Medir também se há redução na disponibilidade nesses períodos.
 
-🔴 6. Fidelização de Hosts
+
+
+
+
+5 -- Fidelização de Hosts x 
 
 Pergunta de negócio:
 
@@ -82,49 +52,10 @@ Cruzar com review_scores_rating, occupancy rate e price.
 
 Ver se hosts antigos têm melhor desempenho e se merecem incentivos.
 
-⚫ 7. Qualidade por Bairro
 
-Pergunta de negócio:
 
-Há bairros que concentram imóveis mal avaliados?
 
-O que investigar:
-
-Média de review_scores_rating por neighbourhood_cleansed.
-
-Quantidade de reviews negativos (<70) por bairro.
-
-Relacionar com preço médio — bairros baratos mas mal avaliados podem afastar hóspedes.
-
-⚪ 8. Políticas de Cancelamento
-
-Pergunta de negócio:
-
-Políticas de cancelamento rígidas afastam hóspedes?
-
-O que investigar:
-
-Média de occupancy rate por cancellation_policy.
-
-Comparar com review_scores_rating (quem tem política flexível recebe melhores avaliações?).
-
-Identificar política ideal para maximizar ocupação sem comprometer preço.
-
-🟢 9. Estratégia de Expansão
-
-Pergunta de negócio:
-
-Em quais bairros vale a pena incentivar novos anúncios?
-
-O que investigar:
-
-Encontrar bairros com alta demanda (baixa disponibilidade) e poucos anúncios ativos.
-
-Calcular avg(price) e avg(occupancy) por bairro.
-
-Sugerir expansão onde a demanda é maior que a oferta.
-
-🟡 10. Experiência do Usuário
+6-- Experiência do Usuário
 
 Pergunta de negócio:
 
