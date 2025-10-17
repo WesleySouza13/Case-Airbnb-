@@ -26,15 +26,6 @@ Pergunta de negócio:
 
 Em quais períodos os preços sobem ou caem?
 
-O que investigar:
-
-Usar o calendar.csv para ver variação de preço por mês.
-
-Ver se datas como Natal, Carnaval ou feriados mostram aumento de preço.
-
-Medir também se há redução na disponibilidade nesses períodos.
-
-
 
 
 
@@ -44,18 +35,8 @@ Pergunta de negócio:
 
 Hosts com mais tempo na plataforma têm melhores resultados?
 
-O que investigar:
 
-Calcular o tempo de cadastro (host_since).
-
-Cruzar com review_scores_rating, occupancy rate e price.
-
-Ver se hosts antigos têm melhor desempenho e se merecem incentivos.
-
-
-
-
-6-- Experiência do Usuário
+6 -- Experiência do Usuário x 
 
 Pergunta de negócio:
 
