@@ -8,6 +8,6 @@ select
     bedrooms,
     accommodates,
     review_scores_rating, 
-    cleaning_fee as taxa_de_limpeza,
+    CAST(REPLACE(cleaning_fee, '$', '')AS REAL) as taxa_de_limpeza,
     host_is_superhost
 from listings
