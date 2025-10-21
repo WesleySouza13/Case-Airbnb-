@@ -1,49 +1,35 @@
-1--Rentabilidade e Precificação
 
-Pergunta de negócio:
-
-Estamos cobrando o preço certo pelos anúncios em cada bairro?
-
-
-
-2-- Performance de Superhosts
+1-- Performance de Superhosts
 
 Pergunta de negócio:
 
 Hosts “superhost” realmente têm melhor desempenho que os demais?
 
 
-3-- Impacto das Avaliações no Preço x
+2-- Impacto das Avaliações no Preço x
 
 Pergunta de negócio:
 
 Avaliações altas justificam preços mais caros?
 
 
-4--  Sazonalidade de Preços x 
+3 -- Sazonalidade de Preços x 
 
 Pergunta de negócio:
 
 Em quais períodos os preços sobem ou caem?
 
 
-
-
-5 -- Fidelização de Hosts x 
+4-- Fidelização de Hosts x
 
 Pergunta de negócio:
 
 Hosts com mais tempo na plataforma têm melhores resultados?
 
 
-6 -- Experiência do Usuário x 
+5-- Experiência do Usuário  <---
 
 Pergunta de negócio:
 
 Quais fatores mais influenciam uma boa avaliação?
 
-O que investigar:
-
-Correlação entre review_scores_rating e variáveis como cleaning_fee, room_type, accommodates, etc.
-
-Descobrir se fatores físicos (número de camas, tipo de quarto) ou de serviço (superhost, limpeza) pesam mais.

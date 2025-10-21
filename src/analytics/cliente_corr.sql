@@ -1,4 +1,4 @@
--- Quais fatores mais influenciam uma boa avaliação?
+-- 5 - Quais fatores mais influenciam uma boa avaliação?
 -- irei selecionar algumas variaveis para fazer um estudo de correlaçao (nao causa) 
 select 
     room_type, 

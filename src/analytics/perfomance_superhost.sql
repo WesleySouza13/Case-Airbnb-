@@ -1,3 +1,4 @@
+-- 1 - irei investigar se a performance do host é uma caracteristica para preços maiores
 WITH tb_taxa_ocupacao as (
     select 
         listing_id as id,
@@ -25,3 +26,4 @@ SELECT
 from tb_taxa_ocupacao as t1
 JOIN tb_superhost as t2 
 on t1.id = t2.id
+
