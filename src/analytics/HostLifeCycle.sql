@@ -30,7 +30,7 @@ SELECT
     availability_60,
     availability_90,
     availability_365,
-    price
+    CAST(REPLACE(price, "$", "") as real) as price
 from listings
 
 ),
