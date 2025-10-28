@@ -20,7 +20,7 @@ sns.scatterplot(data=df, x='review_scores_rating', y='reviews_per_month')
 plt.grid()
 # %%
 #separando variaveis para cluster
-cluster_col = ['review_scores_rating','reviews_per_month']
+cluster_col = ['review_scores_rating','reviews_per_month'] 
 x = df[cluster_col]
 print(x.isnull().sum())
 # %%
@@ -39,6 +39,7 @@ for i in range(2,10):
     sil_score = silhouette_score(x, kmeans_.labels_)
     davies_score = davies_bouldin_score(x, kmeans_.labels_)
     print(f'sillueta para cluster {i}: {sil_score} e davies bouldin: {davies_score}')
+    
 # plotando cotovelo dos clusters 
 plt.figure(figsize=(10,5))
 plt.title('Teste de cotovelo do cluster - Dados normalizados com Min Max')

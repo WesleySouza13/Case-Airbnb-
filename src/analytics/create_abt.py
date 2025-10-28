@@ -1,4 +1,4 @@
-
+# %%
 import sqlite3
 import pandas as pd 
 import os 
@@ -25,5 +25,7 @@ db_or =  os.path.join('..', '..', 'data', 'HostLifeCycle.db')
 os.path.exists(db_or)
 con_or = sqlite3.connect(db_or)
 con_new = sqlite3.connect(db_new) # conexao original 
-create_abt_db(connect_or=con_or, connect_new=con_new, query=query, table_name='abt_airbnb.db')
+create_abt_db(connect_or=con_or, connect_new=con_new, query=query, table_name='abt_airbnb')
 
+
+# %%
