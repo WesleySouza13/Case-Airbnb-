@@ -54,8 +54,10 @@ df = df.dropna(axis=1) # dropando as demais linhas nulas pois nao possuem signif
 df.shape
 
 # exportando dataset tratado 
-path = os.path.join('..','data', 'dataframe_tratado.csv')
-print(os.path.exists(path))
-df.to_csv(path)
+new_path = os.path.join('..','data', 'feature_store.db')
+new_con = sqlite3.connect(new_path)
+
+df.to_sql('feature_store', new_con, index=True, if_exists='replace') 
+
 
 # %%
