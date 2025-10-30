@@ -33,7 +33,7 @@ O projeto está estruturado nas seguintes etapas:
 
 ## Nota sobre a Análise de Dados (EDA):
 
-A Análise Exploratória e o tratamento de dados foram realizados para informar o Feature Engineering. Por uma decisão de escopo, e visando maior clareza na documentação do ciclo de vida, esta seção foi intencionalmente resumida. Todo o processo detalhado de exploração, clean-up e feature selection está integralmente versionado nos Notebooks de Desenvolvimento (./notebooks) do repositório, garantindo rastreabilidade e foco na arquitetura de MLOps e no resultado final do pipeline.
+A Análise Exploratória e o tratamento de dados foram realizados para informar o Feature Engineering. Por uma decisão de escopo, e visando maior clareza na documentação do ciclo de vida, esta seção foi intencionalmente resumida. Todo o processo detalhado de exploração, clean-up e feature selection está integralmente versionado nos Notebooks de Desenvolvimento (./notebooks) e nos demais bancos de dados e arquivos .sql (/.src/analytics) do repositório, garantindo rastreabilidade e foco na arquitetura de MLOps e no resultado final do pipeline.
 
 ## Modelagem: 
 
@@ -116,5 +116,6 @@ Shap:
 - A feature price_per_accommodates (preço por acomodações) apresentou pouca influência, mas ainda assim se destaca por indicar uma relação potencialmente relevante com o comportamento do modelo.
 
 - As demais variáveis tiveram impacto reduzido nas predições, reforçando a importância das variáveis
+
 
 
