@@ -48,7 +48,7 @@ df = df.drop(exclude_cols, axis=1)
 # %%
 df.shape
 # %%
-df = df.dropna(axis=1) # dropando as demais linhas nulas pois nao possuem significancia no dataset 
+df = df.dropna(axis=0) # dropando as demais linhas nulas pois nao possuem significancia no dataset 
 
 # %%
 df.shape
@@ -58,6 +58,6 @@ new_path = os.path.join('..','data', 'feature_store.db')
 new_con = sqlite3.connect(new_path)
 
 df.to_sql('feature_store', new_con, index=True, if_exists='replace') 
-
+display(df)
 
 # %%
