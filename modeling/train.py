@@ -13,7 +13,8 @@ import numpy as np
 import seaborn as sns 
 import sqlite3
 from statsmodels.stats.outliers_influence import variance_inflation_factor
-
+import shap
+# %%
 db_path = os.path.join('..', 'data', 'feature_store.db')
 con = sqlite3.connect(db_path)
 query = "SELECT * FROM feature_store"
@@ -46,6 +47,7 @@ models = {
 }
 
 # treinando modelos 
+best_models = []
 for i, model in models.items():
     model.fit(X_train, y_train)
     y_pred_train = model.predict(X_train)
@@ -57,7 +59,11 @@ for i, model in models.items():
     print(f'[TESTE]  Modelo: {i} -> {metrics_test}')
 
     # aplicaçao da funçao descriminante das metricas 
-    #desc = discriminant(i, metrics_test)
+    disc = discriminant(model=model, y_metric=metrics_test)
+    if disc:
+        best_models.append(disc)
+best_models_df = pd.DataFrame(best_models)
+display(best_models_df)
 # %%
 
 # ANALISE DE VIF
@@ -74,4 +80,10 @@ plt.ylabel('valores de VIF - Coeficiente de multicolinearidade')
 plt.xticks(rotation=90)
 plt.tight_layout()
 plt.show()
+# %%
+model = RandomForestRegressor(random_state=42).fit(X_train, y_train)
+explainer = shap.TreeExplainer(model, X_train)
+# %%
+shap_ = explainer.shap_values(X_test)
+shap.summary_plot(shap_, X_test)
 # %%
