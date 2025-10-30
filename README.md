@@ -73,22 +73,47 @@ A estratégia de treinamento consistiu na avaliação de um conjunto diversifica
 # Métricas de Treinamento e Teste: 
 
 [TREINO] Modelo: Regressao linear -> {'R²': 0.9092242082906117, 'MSE': 772.4433223897794, 'MAE': 14.813408689834889}
+
 [TESTE]  Modelo: Regressao linear -> {'R²': 0.9071469276268579, 'MSE': 842.3981085197632, 'MAE': 16.14211173683394}
+
 [TREINO] Modelo: Arvore de decisao -> {'R²': 1.0, 'MSE': 0.0, 'MAE': 0.0}
+
 [TESTE]  Modelo: Arvore de decisao -> {'R²': 0.838117762339751, 'MSE': 1468.6567425569176, 'MAE': 5.81260945709282}
+
 [TREINO] Modelo: Random forest -> {'R²': 0.992709333194088, 'MSE': 62.038862828371265, 'MAE': 1.1275}
+
 [TESTE]  Modelo: Random forest -> {'R²': 0.9898109076167725, 'MSE': 92.43929071803856, 'MAE': 2.3542556917688273}
+
 [TREINO] Modelo: AdaBooost -> {'R²': 0.8040359410409815, 'MSE': 1667.5274973739008, 'MAE': 37.06223427905047}
+
 [TESTE]  Modelo: AdaBooost -> {'R²': 0.7930859302553576, 'MSE': 1877.2025149426388, 'MAE': 38.64403183796145}
+
 [TREINO] Modelo: XGboost -> {'R²': 0.999983198123869, 'MSE': 0.14297310743958777, 'MAE': 0.25415815671354586}
+
 [TESTE]  Modelo: XGboost -> {'R²': 0.982634723887874, 'MSE': 157.54433727289054, 'MAE': 3.4792545038012825}
 
 Para discriminar qual era o melhor modelo com base a métricas e escolhas proprias, eu criei uma funçao discriminant.py que foi testada utilizando o pytest e herdada pelo laço de treinamento dos modelos
 
-# Funçao discriminant.py:
+# Função discriminant.py:
+
 <img width="1172" height="938" alt="image" src="https://github.com/user-attachments/assets/1dfd4c0b-d36e-4854-bab7-c63f22c0e6a1" />
 
 # Saída da Função: 
 
 [{'modelo': 'RandomForestRegressor', 'R²': 0.9898109076167725, 'MSE': 92.43929071803856, 'MAE': 2.3542556917688273}]
+
+Obs: Todos os modelos foram treinados utilizando os hiperparâmetros padrão. Dessa forma, nenhum deles se destacou indevidamente em função de ajustes de profundidade ou otimizações. 
+
+## SHAP VALUES
+
+O modelo Random Forest apresentou o melhor desempenho mesmo com os hiperparâmetros padrão. A partir disso, realizei uma análise com SHAP para investigar de forma interpretável como cada feature influenciou as decisões do modelo, reforçando a transparência e compreensão dos resultados.
+Shap: 
+
+<img width="782" height="940" alt="image" src="https://github.com/user-attachments/assets/d76d4bbb-b3f1-4c06-9db5-8d3946294eee" />
+
+- As features que mais influenciaram as decisões do modelo foram bedrooms (quantidade de quartos), price_per_bedrooms (preço por quarto) e bathrooms (quantidade de banheiros), além de price_per_bathrooms (preço por banheiro).
+
+- A feature price_per_accommodates (preço por acomodações) apresentou pouca influência, mas ainda assim se destaca por indicar uma relação potencialmente relevante com o comportamento do modelo.
+
+- As demais variáveis tiveram impacto reduzido nas predições, reforçando a importância das variáveis
 
