@@ -42,7 +42,7 @@ models = {
     'Regressao linear': LinearRegression(),
     'Arvore de decisao':DecisionTreeRegressor(random_state=42),
     'Random forest':RandomForestRegressor(random_state=42),
-    'AdaBooost': AdaBoostRegressor(random_state=42), 
+    'AdaBoost': AdaBoostRegressor(random_state=42), 
     'XGboost': XGBRegressor()
 }
 
