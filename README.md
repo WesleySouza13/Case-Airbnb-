@@ -94,6 +94,14 @@ A estratégia de treinamento consistiu na avaliação de um conjunto diversifica
 
 Para discriminar qual era o melhor modelo com base a métricas e escolhas proprias, eu criei uma funçao discriminant.py que foi testada utilizando o pytest e herdada pelo laço de treinamento dos modelos
 
+# Analise de Multicolinearidade (VIF):
+
+Devido ao alto desempenho apresentado pela Regressão Linear, realizei um estudo de multicolinearidade das variáveis para verificar se esse comportamento era realmente consistente ou se se tratava de um caso de alta correlação entre as features. Outros modelos não seriam afetados por esse tipo de problema, pois não são paramétricos, mas sim baseados em árvores.
+
+VIF:
+<img width="769" height="615" alt="image" src="https://github.com/user-attachments/assets/32fad7ca-20d3-47a5-945b-de7e6ca58ec5" />
+
+
 # Função discriminant.py:
 
 <img width="1172" height="938" alt="image" src="https://github.com/user-attachments/assets/1dfd4c0b-d36e-4854-bab7-c63f22c0e6a1" />
@@ -116,6 +124,7 @@ Shap:
 - A feature price_per_accommodates (preço por acomodações) apresentou pouca influência, mas ainda assim se destaca por indicar uma relação potencialmente relevante com o comportamento do modelo.
 
 - As demais variáveis tiveram impacto reduzido nas predições, reforçando a importância das variáveis
+
 
 
 
