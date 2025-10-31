@@ -99,8 +99,10 @@ Para discriminar qual era o melhor modelo com base a métricas e escolhas propri
 Devido ao alto desempenho apresentado pela Regressão Linear, realizei um estudo de multicolinearidade das variáveis para verificar se esse comportamento era realmente consistente ou se se tratava de um caso de alta correlação entre as features. Outros modelos não seriam afetados por esse tipo de problema, pois não são paramétricos, mas sim baseados em árvores.
 
 VIF:
+
 <img width="769" height="615" alt="image" src="https://github.com/user-attachments/assets/32fad7ca-20d3-47a5-945b-de7e6ca58ec5" />
 
+Observa-se uma forte multicolinearidade entre as variáveis availability_90, availability_365 e mean_availability, o que explica o desempenho artificialmente elevado do modelo e a dependência excessiva da Regressão Linear em relação à correlação entre essas features.
 
 # Função discriminant.py:
 
@@ -124,6 +126,7 @@ Shap:
 - A feature price_per_accommodates (preço por acomodações) apresentou pouca influência, mas ainda assim se destaca por indicar uma relação potencialmente relevante com o comportamento do modelo.
 
 - As demais variáveis tiveram impacto reduzido nas predições, reforçando a importância das variáveis
+
 
 
 
