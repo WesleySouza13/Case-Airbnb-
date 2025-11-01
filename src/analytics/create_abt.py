@@ -7,7 +7,7 @@ def read_query(query_path):
     with open(query_path) as query:
         return query.read()
 
-query_path = os.path.join('abt.sql')
+query_path = os.path.join('new_abt.sql')
 
 #utilizando a funcao read_query 
 query = read_query(query_path=query_path)

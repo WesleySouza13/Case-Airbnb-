@@ -22,7 +22,7 @@ for i in df.columns:
     
 # %%
 some_cols = ['tempoHost', 'weekly_price', 'monthly_price', 'security_deposit', 'cleaning_fee', 'review_per_year', 'review_scores_rating',
-            'reviews_per_month']
+            'reviews_per_month', 'accommodates_per_bedroom', 'beds_per_bedroom', 'bathrooms_per_bedroom']
 df[some_cols].describe().T.sort_values(by='std')
 
 # %%
@@ -34,13 +34,20 @@ for mean in mean_cols:
 
 # %%
 # substituindo pela mediana
-median_cols = ['review_per_year', 'cleaning_fee', 'security_deposit']
+median_cols = ['review_per_year', 'cleaning_fee', 'security_deposit', 'bathrooms_per_bedroom', 'beds_per_bedroom', 'accommodates_per_bedroom']
 
 for median in median_cols:
     df[median] = df[median].fillna(df[median].median())
     print(f'std: {df[median].std()} e valores nulos em {median}: {df[median].isna().sum()}')
 
 
+# %%
+df.isnull().sum()
+
+# %% 
+# substituindo TempoHost por 0 
+df['tempoHost'] = df['tempoHost'].fillna(0)
+df['tempoHost'].isnull().sum()
 # %%
 # excluindo colunas do nosso estudo 
 exclude_cols = ['monthly_price', 'weekly_price']
@@ -53,7 +60,7 @@ df = df.dropna(axis=0) # dropando as demais linhas nulas pois nao possuem signif
 # %%
 df.shape
 
-# exportando dataset tratado 
+# exportando dados tratados para um feature store e treinamento dos modelos
 new_path = os.path.join('..','data', 'feature_store.db')
 new_con = sqlite3.connect(new_path)
 
