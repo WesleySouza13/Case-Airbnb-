@@ -81,7 +81,7 @@ plt.xticks(rotation=90)
 plt.tight_layout()
 plt.show()
 # %%
-model = RandomForestRegressor(random_state=42).fit(X_train, y_train)
+model = XGBRegressor().fit(X_train, y_train)
 explainer = shap.TreeExplainer(model, X_train)
 # %%
 shap_ = explainer.shap_values(X_test)

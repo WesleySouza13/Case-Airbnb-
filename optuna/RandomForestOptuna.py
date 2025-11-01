@@ -37,9 +37,11 @@ def objective(trial):
     r2 = r2_score(y_test, y_pred)
     
     return r2
-study = optuna.create_study()
-study.optimize(objective, n_trials=100)
+study = optuna.create_study(direction='maximize')
+study.optimize(objective, n_trials=200, show_progress_bar=True)
 # %%
 hyperparameters = study.best_params
 joblib.dump(hyperparameters, 'RandomForestHyperparameters.json')
 
+
+# %%

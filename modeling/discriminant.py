@@ -5,7 +5,7 @@ def discriminant(model, y_metric):
     mae = y_metric.get('MAE', float('inf'))
     
     # separaçao de modelos com base a criterios propios 
-    if r2 > 0.89 and mse < 100 and mae < 50:
+    if r2 > 0.6 and mse < 100 and mae < 50:
         out = {
             'modelo': model.__class__.__name__,
             'R²': r2,
