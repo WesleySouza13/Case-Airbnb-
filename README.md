@@ -130,7 +130,7 @@ Shap:
 <img width="776" height="920" alt="image" src="https://github.com/user-attachments/assets/c0518ad4-0b4f-4ee1-96ee-7f537abae970" />
 
 
-## Optuna - Busca por Hiperparamentros:
+## Optuna - Busca por Hiperparametros:
 
 Para realizar uma busca otimizada dos hiperparâmetros dos modelos, utilizei a biblioteca Optuna (já aplicada em outros projetos).
 Com ela, conduzi uma busca automatizada dentro de intervalos de parâmetros previamente definidos, com o objetivo de maximizar o desempenho dos modelos.
@@ -148,6 +148,7 @@ O modelo XGBoost demonstrou uma ligeira vantagem em relação ao Random Forest, 
 Ambos os modelos estão previstos para uso em produção, mas cada um será direcionado a uma finalidade específica dentro da aplicação.
 
 Para um melhor aproveitamento dos parâmetros otimizados, exportei os hiperparâmetros dos modelos para um arquivo .json, armazenado na pasta /optuna.
+
 
 
 
