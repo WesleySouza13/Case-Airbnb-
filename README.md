@@ -127,7 +127,8 @@ Observa-se uma forte multicolinearidade entre as variáveis availability_90, ava
 O modelo Random Forest apresentou o melhor desempenho mesmo com os hiperparâmetros padrão. A partir disso, realizei uma análise com SHAP para investigar de forma interpretável como cada feature influenciou as decisões do modelo, reforçando a transparência e compreensão dos resultados.
 Shap: 
 
-<img width="782" height="940" alt="image" src="https://github.com/user-attachments/assets/d76d4bbb-b3f1-4c06-9db5-8d3946294eee" />
+<img width="776" height="920" alt="image" src="https://github.com/user-attachments/assets/c0518ad4-0b4f-4ee1-96ee-7f537abae970" />
+
 
 ## Optuna - Busca por Hiperparamentros:
 
@@ -147,6 +148,7 @@ O modelo XGBoost demonstrou uma ligeira vantagem em relação ao Random Forest, 
 Ambos os modelos estão previstos para uso em produção, mas cada um será direcionado a uma finalidade específica dentro da aplicação.
 
 Para um melhor aproveitamento dos parâmetros otimizados, exportei os hiperparâmetros dos modelos para um arquivo .json, armazenado na pasta /optuna.
+
 
 
 
