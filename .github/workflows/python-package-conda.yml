@@ -2,24 +2,31 @@ name: airbnb ci
 
 on: 
   push:
-    branches:[main] 
-pull request:
-    branches:[main]
+    branches: [main] 
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v4 # Checks out your repository
+    - uses: actions/checkout@v4
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11.9' 
+    - name: Cache pip
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt # Installs dependencies from requirements.txt
+        pip install -r requirements.txt
     - name: Run tests
       run: |
         pytest -s -v
