@@ -32,10 +32,9 @@ O projeto está estruturado nas seguintes etapas:
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black) ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
-## Nota sobre a Análise de Dados (EDA):
+## Foco na Arquitetura MLOps:
 
-A Análise Exploratória e o tratamento de dados foram realizados para informar o Feature Engineering. Por uma decisão de escopo, e visando maior clareza na documentação do ciclo de vida, esta seção foi intencionalmente resumida. Todo o processo detalhado de exploração, clean-up e feature selection está integralmente versionado nos Notebooks de Desenvolvimento (./notebooks) e nos demais bancos de dados e arquivos .sql (/.src/analytics) do repositório, garantindo rastreabilidade e foco na arquitetura de MLOps e no resultado final do pipeline.
-
+A Análise Exploratória (EDA) e o tratamento de dados foram cruciais para a etapa de Feature Engineering. Para manter o foco deste README na arquitetura do pipeline, ciclo de vida do modelo e resultados, os notebooks detalhados de exploração e limpeza estão versionados e disponíveis na pasta /notebooks.
 ## Modelagem: 
 
 # Cluster: 
@@ -163,6 +162,7 @@ Por exemplo, se estivermos prevendo o preço de um quarto que custa $900, o mode
 - Ambos os modelos estão previstos para uso em produção, mas cada um será direcionado a uma finalidade específica dentro da aplicação.
 
 - Para um melhor aproveitamento dos parâmetros otimizados, exportei os hiperparâmetros dos modelos para um arquivo .json, armazenado na pasta /optuna.
+
 
 
 
