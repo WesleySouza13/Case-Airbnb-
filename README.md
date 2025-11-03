@@ -72,31 +72,45 @@ A estratégia de treinamento consistiu na avaliação de um conjunto diversifica
 
 # Métricas de Treinamento e Teste: 
 
-[TREINO] Modelo: Regressao linear -> {'R²': 0.9092242082906117, 'MSE': 772.4433223897794, 'MAE': 14.813408689834889}
+[TREINO] Modelo: Regressao linear -> {'R²': 0.5824575956165494, 'MSE': 3373.5703233407417, 'MAE': 35.865842620240045}
 
-[TESTE]  Modelo: Regressao linear -> {'R²': 0.9071469276268579, 'MSE': 842.3981085197632, 'MAE': 16.14211173683394}
+[TESTE]  Modelo: Regressao linear -> {'R²': 0.5877863061831368, 'MSE': 3134.288847699121, 'MAE': 35.34109448637189}
 
-[TREINO] Modelo: Arvore de decisao -> {'R²': 1.0, 'MSE': 0.0, 'MAE': 0.0}
+[TREINO] Modelo: Arvore de decisao -> {'R²': 0.9991523080429326, 'MSE': 6.8490012024523255, 'MAE': 0.1991921552687735}
 
-[TESTE]  Modelo: Arvore de decisao -> {'R²': 0.838117762339751, 'MSE': 1468.6567425569176, 'MAE': 5.81260945709282}
+[TESTE]  Modelo: Arvore de decisao -> {'R²': 0.26029364623657325, 'MSE': 5624.396787271514, 'MAE': 44.95019788918206}
 
-[TREINO] Modelo: Random forest -> {'R²': 0.992709333194088, 'MSE': 62.038862828371265, 'MAE': 1.1275}
+[TREINO] Modelo: Random forest -> {'R²': 0.9388035196790947, 'MSE': 494.4423075025393, 'MAE': 13.165682319225311}
 
-[TESTE]  Modelo: Random forest -> {'R²': 0.9898109076167725, 'MSE': 92.43929071803856, 'MAE': 2.3542556917688273}
+[TESTE]  Modelo: Random forest -> {'R²': 0.5712379970360033, 'MSE': 3260.1148005632226, 'MAE': 34.507110739822416}
 
-[TREINO] Modelo: AdaBooost -> {'R²': 0.8040359410409815, 'MSE': 1667.5274973739008, 'MAE': 37.06223427905047}
+[TREINO] Modelo: AdaBoost -> {'R²': -0.0142394918126445, 'MSE': 8194.636555278094, 'MAE': 82.55610949684166}
 
-[TESTE]  Modelo: AdaBooost -> {'R²': 0.7930859302553576, 'MSE': 1877.2025149426388, 'MAE': 38.64403183796145}
+[TESTE]  Modelo: AdaBoost -> {'R²': -0.2192972170031744, 'MSE': 9270.991542996833, 'MAE': 86.10647680744755}
 
-[TREINO] Modelo: XGboost -> {'R²': 0.999983198123869, 'MSE': 0.14297310743958777, 'MAE': 0.25415815671354586}
+[TREINO] Modelo: XGboost -> {'R²': 0.9729670846446976, 'MSE': 218.41480060137621, 'MAE': 9.789531707763672}
 
-[TESTE]  Modelo: XGboost -> {'R²': 0.982634723887874, 'MSE': 157.54433727289054, 'MAE': 3.4792545038012825}
+[TESTE]  Modelo: XGboost -> {'R²': 0.5725595318458785, 'MSE': 3250.066440019727, 'MAE': 33.93905085057885}
 
 Para discriminar qual era o melhor modelo com base a métricas e escolhas proprias, eu criei uma funçao discriminant.py que foi testada utilizando o pytest e herdada pelo laço de treinamento dos modelos
 
+Apesar de eu esperar que a função discriminant.py apontasse para um modelo, tive minhas expectativas frustradas, pois as métricas obtidas no treinamento e nos testes não alcançaram os valores definidos na função. Isso se deve a alguns fatores, como a baixa quantidade de dados na amostra, o comportamento sazonal, que influencia na capacidade dos modelos de generalizar a variância explicada (R²) e a falta de bons hiperparâmetros nos modelos. 
+
 # Analise de Multicolinearidade (VIF):
 
-Devido ao alto desempenho apresentado pela Regressão Linear, realizei um estudo de multicolinearidade das variáveis para verificar se esse comportamento era realmente consistente ou se se tratava de um caso de alta correlação entre as features. Outros modelos não seriam afetados por esse tipo de problema, pois não são paramétricos, mas sim baseados em árvores.
+Para verificar se havia influência da paralelização das variáveis, realizei um estudo de VIF (Variance Inflation Factor), que indica o grau de multicolinearidade entre elas.
+
+Costumo definir os seguintes limites de interpretação para o VIF:
+
+0 – 6: baixa multicolinearidade
+
+7 – 10: multicolinearidade média
+
+10 – 15: multicolinearidade aceitável
+
+> 16: alta multicolinearidade
+
+Abaixo, apresento um gráfico para facilitar a visualização dos resultados, embora eu pessoalmente prefira analisá-los em formato de tabela.
 
 VIF:
 
@@ -108,26 +122,31 @@ Observa-se uma forte multicolinearidade entre as variáveis availability_90, ava
 
 <img width="1172" height="938" alt="image" src="https://github.com/user-attachments/assets/1dfd4c0b-d36e-4854-bab7-c63f22c0e6a1" />
 
-# Saída da Função: 
-
-[{'modelo': 'RandomForestRegressor', 'R²': 0.9898109076167725, 'MSE': 92.43929071803856, 'MAE': 2.3542556917688273}]
-
-Obs: Todos os modelos foram treinados utilizando os hiperparâmetros padrão. Dessa forma, nenhum deles se destacou indevidamente em função de ajustes de profundidade ou otimizações. 
-
-## SHAP VALUES
+## SHAP VALUES:
 
 O modelo Random Forest apresentou o melhor desempenho mesmo com os hiperparâmetros padrão. A partir disso, realizei uma análise com SHAP para investigar de forma interpretável como cada feature influenciou as decisões do modelo, reforçando a transparência e compreensão dos resultados.
 Shap: 
 
 <img width="782" height="940" alt="image" src="https://github.com/user-attachments/assets/d76d4bbb-b3f1-4c06-9db5-8d3946294eee" />
 
-- As features que mais influenciaram as decisões do modelo foram bedrooms (quantidade de quartos), price_per_bedrooms (preço por quarto) e bathrooms (quantidade de banheiros), além de price_per_bathrooms (preço por banheiro).
+## Optuna - Busca por Hiperparamentros:
 
-- A feature price_per_accommodates (preço por acomodações) apresentou pouca influência, mas ainda assim se destaca por indicar uma relação potencialmente relevante com o comportamento do modelo.
+Para realizar uma busca otimizada dos hiperparâmetros dos modelos, utilizei a biblioteca Optuna (já aplicada em outros projetos).
+Com ela, conduzi uma busca automatizada dentro de intervalos de parâmetros previamente definidos, com o objetivo de maximizar o desempenho dos modelos.
 
-- As demais variáveis tiveram impacto reduzido nas predições, reforçando a importância das variáveis
+Os modelos escolhidos para essa otimização foram o XGBoost e o Random Forest, pois ambos apresentaram as melhores métricas com os parâmetros default.
 
+As métricas obtidas após a busca foram:
 
+XGBoost: {'R²': 0.6213, 'MSE': 2879.19, 'MAE': 32.20}
+
+Random Forest: {'R²': 0.6021, 'MSE': 3024.77, 'MAE': 33.80}
+
+O modelo XGBoost demonstrou uma ligeira vantagem em relação ao Random Forest, apresentando menores valores de MAE e MSE e um R² superior, o que indica uma melhor capacidade de generalizar as variações naturais do conjunto de dados.
+
+Ambos os modelos estão previstos para uso em produção, mas cada um será direcionado a uma finalidade específica dentro da aplicação.
+
+Para um melhor aproveitamento dos parâmetros otimizados, exportei os hiperparâmetros dos modelos para um arquivo .json, armazenado na pasta /optuna.
 
 
 
