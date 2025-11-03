@@ -1,9 +1,10 @@
 <img width="3840" height="2160" alt="image" src="https://github.com/user-attachments/assets/3d68948e-963a-46f0-a261-d1c91d2efc15" />
 
 
-## Objetivo:
+## Problema de Negócio:
 
-O foco central deste projeto é o desenvolvimento de um algoritmo de Machine Learning para a precificação dinâmica de imóveis disponíveis para aluguel na plataforma Airbnb. O valor reside na construção e engenharia do sistema, com uma forte ênfase na implementação de um ciclo de MLOps (Machine Learning Operations) completo e robusto.
+O Airbnb precisa ajustar os preços dinamicamente para maximizar reservas e receita, considerando características do imóvel, reputação do host e demanda do mercado.
+Este projeto cria um modelo preditivo capaz de sugerir preços baseados em dados históricos, comportamento do host e métricas de avaliações, ajudando a tomar decisões mais assertivas e automatizadas.
 
 O projeto está estruturado nas seguintes etapas:
 
@@ -39,8 +40,10 @@ A Análise Exploratória e o tratamento de dados foram realizados para informar 
 
 # Cluster: 
 
-Conduzi uma clusterizaçao selecionando duas caracteristicas que separam os hosts em rating de avaliaçao e frequencia de avaliaçoes por mes. Para fazer bom separamento dos klusters, realizei o teste de cotovelo com os dados normalizados com min max scaler e validei com Davies Bouldin score. 
-Segue o grafico do teste de cotovelo: 
+Conduzi uma clusterização selecionando duas características que separam os hosts com base na nota das avaliações (review_scores_rating) e na frequência de avaliações por mês (reviews_per_month). Para obter um bom separamento dos clusters, realizei o método do cotovelo utilizando os dados normalizados com MinMaxScaler e validei os resultados com o Davies-Bouldin Score.
+
+A seguir, apresenta-se o gráfico do teste do cotovelo:
+
 <img width="755" height="425" alt="image" src="https://github.com/user-attachments/assets/21049820-3f15-4f07-8add-74cd9beecf9a" />
 
 Segue a separação dos clusters:
@@ -91,6 +94,10 @@ A estratégia de treinamento consistiu na avaliação de um conjunto diversifica
 [TREINO] Modelo: XGboost -> {'R²': 0.9729670846446976, 'MSE': 218.41480060137621, 'MAE': 9.789531707763672}
 
 [TESTE]  Modelo: XGboost -> {'R²': 0.5725595318458785, 'MSE': 3250.066440019727, 'MAE': 33.93905085057885}
+
+Observação: Árvores individuais tiveram overfitting evidente.
+
+Random Forest e XGBoost apresentam melhor equilíbrio entre treino e teste.
 
 Para discriminar qual era o melhor modelo com base a métricas e escolhas proprias, eu criei uma funçao discriminant.py que foi testada utilizando o pytest e herdada pelo laço de treinamento dos modelos
 
@@ -156,6 +163,7 @@ Por exemplo, se estivermos prevendo o preço de um quarto que custa $900, o mode
 - Ambos os modelos estão previstos para uso em produção, mas cada um será direcionado a uma finalidade específica dentro da aplicação.
 
 - Para um melhor aproveitamento dos parâmetros otimizados, exportei os hiperparâmetros dos modelos para um arquivo .json, armazenado na pasta /optuna.
+
 
 
 
