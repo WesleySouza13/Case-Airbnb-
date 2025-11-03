@@ -1,9 +1,10 @@
 <img width="3840" height="2160" alt="image" src="https://github.com/user-attachments/assets/3d68948e-963a-46f0-a261-d1c91d2efc15" />
 
 
-## Objetivo:
+## Problema de Negócio:
 
-O foco central deste projeto é o desenvolvimento de um algoritmo de Machine Learning para a precificação dinâmica de imóveis disponíveis para aluguel na plataforma Airbnb. O valor reside na construção e engenharia do sistema, com uma forte ênfase na implementação de um ciclo de MLOps (Machine Learning Operations) completo e robusto.
+O Airbnb precisa ajustar os preços dinamicamente para maximizar reservas e receita, considerando características do imóvel, reputação do host e demanda do mercado.
+Este projeto cria um modelo preditivo capaz de sugerir preços baseados em dados históricos, comportamento do host e métricas de avaliações, ajudando a tomar decisões mais assertivas e automatizadas.
 
 O projeto está estruturado nas seguintes etapas:
 
@@ -31,16 +32,17 @@ O projeto está estruturado nas seguintes etapas:
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black) ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
-## Nota sobre a Análise de Dados (EDA):
+## Foco na Arquitetura MLOps:
 
-A Análise Exploratória e o tratamento de dados foram realizados para informar o Feature Engineering. Por uma decisão de escopo, e visando maior clareza na documentação do ciclo de vida, esta seção foi intencionalmente resumida. Todo o processo detalhado de exploração, clean-up e feature selection está integralmente versionado nos Notebooks de Desenvolvimento (./notebooks) e nos demais bancos de dados e arquivos .sql (/.src/analytics) do repositório, garantindo rastreabilidade e foco na arquitetura de MLOps e no resultado final do pipeline.
-
+A Análise Exploratória (EDA) e o tratamento de dados foram cruciais para a etapa de Feature Engineering. Para manter o foco deste README na arquitetura do pipeline, ciclo de vida do modelo e resultados, os notebooks detalhados de exploração e limpeza estão versionados e disponíveis na pasta /notebooks.
 ## Modelagem: 
 
 # Cluster: 
 
-Conduzi uma clusterizaçao selecionando duas caracteristicas que separam os hosts em rating de avaliaçao e frequencia de avaliaçoes por mes. Para fazer bom separamento dos klusters, realizei o teste de cotovelo com os dados normalizados com min max scaler e validei com Davies Bouldin score. 
-Segue o grafico do teste de cotovelo: 
+Conduzi uma clusterização selecionando duas características que separam os hosts com base na nota das avaliações (review_scores_rating) e na frequência de avaliações por mês (reviews_per_month). Para obter um bom separamento dos clusters, realizei o método do cotovelo utilizando os dados normalizados com MinMaxScaler e validei os resultados com o Davies-Bouldin Score.
+
+A seguir, apresenta-se o gráfico do teste do cotovelo:
+
 <img width="755" height="425" alt="image" src="https://github.com/user-attachments/assets/21049820-3f15-4f07-8add-74cd9beecf9a" />
 
 Segue a separação dos clusters:
@@ -92,6 +94,10 @@ A estratégia de treinamento consistiu na avaliação de um conjunto diversifica
 
 [TESTE]  Modelo: XGboost -> {'R²': 0.5725595318458785, 'MSE': 3250.066440019727, 'MAE': 33.93905085057885}
 
+Observação: Árvores individuais tiveram overfitting evidente.
+
+Random Forest e XGBoost apresentam melhor equilíbrio entre treino e teste.
+
 Para discriminar qual era o melhor modelo com base a métricas e escolhas proprias, eu criei uma funçao discriminant.py que foi testada utilizando o pytest e herdada pelo laço de treinamento dos modelos
 
 Apesar de eu esperar que a função discriminant.py apontasse para um modelo, tive minhas expectativas frustradas, pois as métricas obtidas no treinamento e nos testes não alcançaram os valores definidos na função. Isso se deve a alguns fatores, como a baixa quantidade de dados na amostra, o comportamento sazonal, que influencia na capacidade dos modelos de generalizar a variância explicada (R²) e a falta de bons hiperparâmetros nos modelos. 
@@ -127,9 +133,10 @@ Observa-se uma forte multicolinearidade entre as variáveis availability_90, ava
 O modelo Random Forest apresentou o melhor desempenho mesmo com os hiperparâmetros padrão. A partir disso, realizei uma análise com SHAP para investigar de forma interpretável como cada feature influenciou as decisões do modelo, reforçando a transparência e compreensão dos resultados.
 Shap: 
 
-<img width="782" height="940" alt="image" src="https://github.com/user-attachments/assets/d76d4bbb-b3f1-4c06-9db5-8d3946294eee" />
+<img width="776" height="920" alt="image" src="https://github.com/user-attachments/assets/c0518ad4-0b4f-4ee1-96ee-7f537abae970" />
 
-## Optuna - Busca por Hiperparamentros:
+
+## Optuna - Busca por Hiperparametros:
 
 Para realizar uma busca otimizada dos hiperparâmetros dos modelos, utilizei a biblioteca Optuna (já aplicada em outros projetos).
 Com ela, conduzi uma busca automatizada dentro de intervalos de parâmetros previamente definidos, com o objetivo de maximizar o desempenho dos modelos.
@@ -142,11 +149,25 @@ XGBoost: {'R²': 0.6213, 'MSE': 2879.19, 'MAE': 32.20}
 
 Random Forest: {'R²': 0.6021, 'MSE': 3024.77, 'MAE': 33.80}
 
-O modelo XGBoost demonstrou uma ligeira vantagem em relação ao Random Forest, apresentando menores valores de MAE e MSE e um R² superior, o que indica uma melhor capacidade de generalizar as variações naturais do conjunto de dados.
+O modelo XGBoost demonstrou uma ligeira vantagem em relação ao Random Forest, apresentando menores valores de MAE e MSE, além de um R² superior, o que indica uma melhor capacidade de explicar a variabilidade dos dados.
 
-Ambos os modelos estão previstos para uso em produção, mas cada um será direcionado a uma finalidade específica dentro da aplicação.
+Por exemplo:
 
-Para um melhor aproveitamento dos parâmetros otimizados, exportei os hiperparâmetros dos modelos para um arquivo .json, armazenado na pasta /optuna.
+o modelo XGBoost apresentou um R² ≈ 0,62, o que significa que ele é capaz de explicar aproximadamente 62% da variância dos valores reais. Em outras palavras, caso o conjunto de dados sofra variações, o modelo consegue capturar e explicar cerca de 62% dessas mudanças.
+
+Já o MAE (erro médio absoluto) representa a diferença média entre o valor previsto e o valor real. Assim, com um MAE de aproximadamente 32,20, o modelo apresenta um erro médio de cerca de 32 dólares em relação ao preço real. Esse valor pode variar conforme as características específicas do host e do quarto, podendo ser maior ou menor em alguns casos.
+
+Por exemplo, se estivermos prevendo o preço de um quarto que custa $900, o modelo tenderia a errar, em média, cerca de $32 para mais ou para menos, ou seja, preveria aproximadamente entre $868 e $932.
+
+- Ambos os modelos estão previstos para uso em produção, mas cada um será direcionado a uma finalidade específica dentro da aplicação.
+
+- Para um melhor aproveitamento dos parâmetros otimizados, exportei os hiperparâmetros dos modelos para um arquivo .json, armazenado na pasta /optuna.
+
+
+
+
+
+
 
 
 
