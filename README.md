@@ -143,11 +143,20 @@ XGBoost: {'R²': 0.6213, 'MSE': 2879.19, 'MAE': 32.20}
 
 Random Forest: {'R²': 0.6021, 'MSE': 3024.77, 'MAE': 33.80}
 
-O modelo XGBoost demonstrou uma ligeira vantagem em relação ao Random Forest, apresentando menores valores de MAE e MSE e um R² superior, o que indica uma melhor capacidade de generalizar as variações naturais do conjunto de dados.
+O modelo XGBoost demonstrou uma ligeira vantagem em relação ao Random Forest, apresentando menores valores de MAE e MSE, além de um R² superior — o que indica uma melhor capacidade de explicar a variabilidade dos dados.
 
-Ambos os modelos estão previstos para uso em produção, mas cada um será direcionado a uma finalidade específica dentro da aplicação.
+Por exemplo:
 
-Para um melhor aproveitamento dos parâmetros otimizados, exportei os hiperparâmetros dos modelos para um arquivo .json, armazenado na pasta /optuna.
+o modelo XGBoost apresentou um R² ≈ 0,62, o que significa que ele é capaz de explicar aproximadamente 62% da variância dos valores reais. Em outras palavras, caso o conjunto de dados sofra variações, o modelo consegue capturar e explicar cerca de 62% dessas mudanças.
+
+Já o MAE (erro médio absoluto) representa a diferença média entre o valor previsto e o valor real. Assim, com um MAE de aproximadamente 32,20, o modelo apresenta um erro médio de cerca de 32 dólares em relação ao preço real. Esse valor pode variar conforme as características específicas do host e do quarto, podendo ser maior ou menor em alguns casos.
+
+Por exemplo, se estivermos prevendo o preço de um quarto que custa $900, o modelo tenderia a errar, em média, cerca de $32 para mais ou para menos, ou seja, preveria aproximadamente entre $868 e $932.
+
+- Ambos os modelos estão previstos para uso em produção, mas cada um será direcionado a uma finalidade específica dentro da aplicação.
+
+- Para um melhor aproveitamento dos parâmetros otimizados, exportei os hiperparâmetros dos modelos para um arquivo .json, armazenado na pasta /optuna.
+
 
 
 
