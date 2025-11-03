@@ -143,7 +143,7 @@ XGBoost: {'R²': 0.6213, 'MSE': 2879.19, 'MAE': 32.20}
 
 Random Forest: {'R²': 0.6021, 'MSE': 3024.77, 'MAE': 33.80}
 
-O modelo XGBoost demonstrou uma ligeira vantagem em relação ao Random Forest, apresentando menores valores de MAE e MSE, além de um R² superior — o que indica uma melhor capacidade de explicar a variabilidade dos dados.
+O modelo XGBoost demonstrou uma ligeira vantagem em relação ao Random Forest, apresentando menores valores de MAE e MSE, além de um R² superior, o que indica uma melhor capacidade de explicar a variabilidade dos dados.
 
 Por exemplo:
 
@@ -156,6 +156,7 @@ Por exemplo, se estivermos prevendo o preço de um quarto que custa $900, o mode
 - Ambos os modelos estão previstos para uso em produção, mas cada um será direcionado a uma finalidade específica dentro da aplicação.
 
 - Para um melhor aproveitamento dos parâmetros otimizados, exportei os hiperparâmetros dos modelos para um arquivo .json, armazenado na pasta /optuna.
+
 
 
 
