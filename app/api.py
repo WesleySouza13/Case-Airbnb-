@@ -13,7 +13,3 @@ def home():
     return {'saida':'Api no ar'}
 
 # criando gateway api prediçao em batch
-@app.post('/batch_predict')
-def batch_pred(data_frame:pd.DataFrame):
-    df = process_data(data_frame)
-    y_pred = model.predict(df)
