@@ -1,9 +1,6 @@
 # %% 
 import pandas as pd 
-import numpy as np 
-import os
-data_path = os.path.join('..', 'data', 'dados_predict.csv')
-df = pd.read_csv(data_path)
+
 def process_data(data:pd.DataFrame):
     if 'id' and 'index' in data:
         drop_cols = ['id', 'index']
@@ -23,6 +20,4 @@ def process_data(data:pd.DataFrame):
             print(f'nao há valores nulos em: {nan}')
         
         return df
-new_df = process_data(df)
-display(new_df)
 # %%
