@@ -85,11 +85,11 @@ class InputData(BaseModel):
 
 @app.post('/real_time_predict')
 def real_time_predict(data:InputData):
+    df = None
     try:
         input_data = data.model_dump()
         df = pd.DataFrame([input_data])
-        data_preprocessed = process_data(df)
-        y_pred = model.predict(data_preprocessed)
-        return {'pred': float(y_pred)}
+        y_pred = model.predict(df)
+        return float(y_pred)
     except Exception as e:
         return {'erro': str(e)}
