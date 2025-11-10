@@ -166,13 +166,19 @@ Por exemplo, se estivermos prevendo o preço de um quarto que custa $900, o mode
 
 
 
-## Criaçao da aplicação e Deploy 
+## Criação da aplicação e Deploy 
 
 
 <img width="906" height="253" alt="image" src="https://github.com/user-attachments/assets/c42979fa-7e96-4c4f-9bc8-fd08a9d7083a" />
 
-Na etapa de deploy da aplicação, a ideia é criar a arquitetura da API utilizando FastAPI, conteinerizar com Docker e Docker Compose e prover na AWS, usando o LocalStack. 
-A aplicaçao consisterar de dos gateways para inferencia: prediçao em batch onde o user irá fornecer um arquivo csv com dados dos hosts, a api colherá esses dados, fará o tratamento e passara pro modelo XGBoost, onde ira ser feito as prediçoes. Para ilustrar o raciocio que, por sua definiçao é simples, criei um desenho bem bobo da ideia: 
+
+Na etapa de deploy da aplicação, a ideia é criar a arquitetura da API utilizando FastAPI, conteinerizar com Docker e Docker Compose e prover na AWS, usando o LocalStack.
+
+A aplicação consistirá em dois gateways para inferência: 
+
+## Predição em batch
+
+O usuário fornecerá um arquivo CSV com dados dos hosts. A API coletará esses dados, fará o tratamento e os enviará para o modelo XGBoost, que realizará as predições. Para ilustrar o raciocínio, que por definição é simples, criei um desenho bem básico da ideia:
 
 <img width="1454" height="486" alt="image" src="https://github.com/user-attachments/assets/434894c0-8ef0-4f47-8508-9530ecccff02" />
 
@@ -184,9 +190,13 @@ Utilizei o conceito de assincronismo para lidar com requisições e processament
 
 A saída do modelo consiste em uma matriz N×2, que logo é transformada em um dataframe e exportada para melhor visualização e análises dos hosts.
 
+O arquivo .csv que contém as previsões está presente no diretório /data.
+
 # Qual problema essa abordagem resolve?
 
 Provendo uma API que faz previsões em batch, permite que setores que possuem arquivos históricos dos hosts possam precificar de forma assertiva, justa, com pouco tempo de processamento e de forma direta.
+
+
 
 
 
