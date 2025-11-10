@@ -49,4 +49,47 @@ async def batch_predict(file: UploadFile=File(...)):
     
     return out_df.to_dict(orient='records')
 
-# %%
+class InputData(BaseModel):
+    is_location_exact:int
+    property_type:int
+    room_type:int
+    bed_type:int
+    has_availability:int
+    binTempo:int
+    FAIXA_RATING:int
+    tempoHost:int
+    accommodates:int
+    bathrooms:int
+    bedrooms:int
+    beds:int
+    accommodates_per_bedroom:int
+    beds_per_bedroom:int
+    bathrooms_per_bedroom:int
+    accommodates_per_bed:int
+    beds_per_accommodate:int
+    security_deposit:float
+    cleaning_fee:float
+    guests_included:int
+    extra_people:int
+    minimum_nights:int
+    maximum_nights:int
+    number_of_reviews:int
+    review_scores_rating:float
+    reviews_per_month:float
+    availability_30:float
+    availability_60:float
+    availability_90:float
+    availability_365:float
+    mean_availability:float
+    review_per_year:float
+
+@app.post('/real_time_predict')
+def real_time_predict(data:InputData):
+    try:
+        input_data = data.model_dump()
+        df = pd.DataFrame([input_data])
+        data_preprocessed = process_data(df)
+        y_pred = model.predict(data_preprocessed)
+        return {'pred': float(y_pred)}
+    except Exception as e:
+        return {'erro': str(e)}
