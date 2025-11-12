@@ -219,6 +219,7 @@ Com isso, criei dois arquivos de requisitos: requirements-dev.txt, destinado ao 
 dentro do terminal:
 
 pip install pipreqs
+
 pipreqs . --force --savepath requirements-ops.txt 
 
 ## Dockerfile
@@ -233,12 +234,36 @@ Como podemos observar, o requirements-ops.txt foi o arquivo utilizado para a bui
 
 Usando o bash, levantei os seguintes comandos:
 
-docker build -t app-airbnbv2 . # v2 pois nao foi a primeira vez que tentei buildar o conteirner, por conta de problema de redundancia de requirements
+docker build -t app-airbnbv2 . # v2 pois não foi a primeira vez que tentei buildar o contêiner, por conta de problema de redundancia de requirements
 
-dorcker images # para vizualizar as imagens 
+docker images # para vizualizar as imagens 
 
 docker run <id da imagem> 
 
+## Deploy com o Render 
+Sabendo das limitações que tenho ao usar a API do OpenStack, optei por utilizar o Render Cloud para o deploy e a provisão da API, comprovando que a aplicação é escalável e funciona de forma estável.
+Com isso, buildei e configurei a imagem do nosso modelo diretamente no Render, realizando o deploy de forma simples e funcional.
+
+As requisições feitas pelo Render estão localizadas no diretório /requests, tanto para a predição em batch quanto para a predição em tempo real.
+
+Por mais que a API tenha rodado tranquilamente no Render, também levantei uma instância EC2 no LocalStack, mesmo com a limitação de não ser possível consumir o produto por meio de requisições.
+
+## AWS EC2 
+
+Para levantar uma instancia no EC2, utilizei o terminal do render para isso, a logica aplicada foi a seguinte: 
+
+awslocal ec2 run-instances \
+    --image-id a8104ba96543 \
+    --instance-type t2.micro \
+    --count 1 \
+    --subnet-id subnet-12345678 \
+    --security-group-ids sg-12345678 \
+    --key-name minha-chave-aws \
+    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=app-airbnb}]'
+
+Não exibi IDs, chaves ou credenciais no comando para evitar qualquer tipo de exposição de dados sensíveis, mantendo as boas práticas de segurança e conformidade no uso de serviços AWS.
+
+No LocalStack Community Edition, o EC2 não cria uma máquina virtual real. Por isso, optei por realizar uma prova prática da aplicação em uma nuvem limitada. Ainda assim, essa etapa comprova minha capacidade de criar e gerenciar instâncias na AWS.
 
 
 
