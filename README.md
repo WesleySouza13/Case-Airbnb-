@@ -265,7 +265,14 @@ Não exibi IDs, chaves ou credenciais no comando para evitar qualquer tipo de ex
 
 No LocalStack Community Edition, o EC2 não cria uma máquina virtual real. Por isso, optei por realizar uma prova prática da aplicação em uma nuvem limitada. Ainda assim, essa etapa comprova minha capacidade de criar e gerenciar instâncias na AWS.
 
+## Conclusão:
 
+Desenvolver este projeto me permitiu fortalecer minha visão de negócio diante de um problema real de precificação, buscando compreender o contexto, selecionar dados relevantes e identificar variáveis que realmente explicassem o comportamento que eu queria analisar. Além disso, ao focar em inferência e modelagem, trabalhar com modelos que não retornaram métricas “perfeitas” me fez ter uma visão mais realista do mundo prático, onde os dados não são normalizados, possuem sazonalidade e seguem ciclos complexos.
+
+Escalar uma aplicação com esse propósito me levou a estudar, de forma mais profunda, ferramentas que eu já conhecia, mas agora com foco em resolução de problemas e implementação real. Essa etapa me fez mergulhar de vez não apenas no universo DevOps, mas também em MLOps, com uma visão voltada para o ecossistema da AWS.
+
+Futuramente, pretendo incluir neste mesmo projeto estudos causais que busquem entender os fatores que explicam as variações da variável alvo (y).
+Além disso, em um cenário próximo, pretendo implementar a orquestração de contêineres com Docker Compose e Kubernetes, conteinerizando também o banco de dados da empresa para permitir previsões em escala, especialmente em períodos de safra.
 
 
 
