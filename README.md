@@ -1,9 +1,5 @@
 <img width="3840" height="2160" alt="image" src="https://github.com/user-attachments/assets/3d68948e-963a-46f0-a261-d1c91d2efc15" />
 
-<img width="906" height="253" alt="image" src="https://github.com/user-attachments/assets/c42979fa-7e96-4c4f-9bc8-fd08a9d7083a" />
-
-
-
 ## Problema de Negócio:
 
 O Airbnb precisa ajustar os preços dinamicamente para maximizar reservas e receita, considerando características do imóvel, reputação do host e demanda do mercado.
@@ -36,6 +32,8 @@ O projeto está estruturado nas seguintes etapas:
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black) ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
 ## Foco na Arquitetura MLOps:
+
+<img width="906" height="253" alt="image" src="https://github.com/user-attachments/assets/c42979fa-7e96-4c4f-9bc8-fd08a9d7083a" />
 
 A Análise Exploratória (EDA) e o tratamento de dados foram cruciais para a etapa de Feature Engineering. Para manter o foco deste README na arquitetura do pipeline, ciclo de vida do modelo e resultados, os notebooks detalhados de exploração e limpeza estão versionados e disponíveis na pasta /notebooks.
 ## Modelagem: 
@@ -194,6 +192,7 @@ O arquivo .csv que contém as previsões está presente no diretório /data.
 # Qual problema essa abordagem resolve?
 
 Provendo uma API que faz previsões em batch, permite que setores que possuem arquivos históricos dos hosts possam precificar de forma assertiva, justa, com pouco tempo de processamento e de forma direta.
+
 
 
 
