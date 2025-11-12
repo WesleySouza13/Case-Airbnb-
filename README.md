@@ -33,7 +33,8 @@ O projeto está estruturado nas seguintes etapas:
 
 ## Foco na Arquitetura MLOps:
 
-<img width="906" height="253" alt="image" src="https://github.com/user-attachments/assets/c42979fa-7e96-4c4f-9bc8-fd08a9d7083a" />
+<img width="1139" height="274" alt="image" src="https://github.com/user-attachments/assets/d46fafa0-f4d7-4cb2-8320-a38fdb9fb02d" />
+
 
 A Análise Exploratória (EDA) e o tratamento de dados foram cruciais para a etapa de Feature Engineering. Para manter o foco deste README na arquitetura do pipeline, ciclo de vida do modelo e resultados, os notebooks detalhados de exploração e limpeza estão versionados e disponíveis na pasta /notebooks.
 ## Modelagem: 
@@ -192,6 +193,7 @@ O arquivo .csv que contém as previsões está presente no diretório /data.
 # Qual problema essa abordagem resolve?
 
 Provendo uma API que faz previsões em batch, permite que setores que possuem arquivos históricos dos hosts possam precificar de forma assertiva, justa, com pouco tempo de processamento e de forma direta.
+
 
 
 
