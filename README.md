@@ -170,7 +170,7 @@ Por exemplo, se estivermos prevendo o preço de um quarto que custa $900, o mode
 
 ## Criação da aplicação e Deploy 
 
-Na etapa de deploy da aplicação, a ideia é criar a arquitetura da API utilizando FastAPI, conteinerizar com Docker e Docker Compose e prover na AWS, usando o LocalStack.
+Na etapa de deploy da aplicação, a ideia é criar a arquitetura da API utilizando FastAPI, conteinerizar com Docker e Docker e prover na AWS (EC2), usando o LocalStack.
 
 A aplicação consistirá em dois gateways para inferência: 
 
@@ -193,6 +193,51 @@ O arquivo .csv que contém as previsões está presente no diretório /data.
 # Qual problema essa abordagem resolve?
 
 Provendo uma API que faz previsões em batch, permite que setores que possuem arquivos históricos dos hosts possam precificar de forma assertiva, justa, com pouco tempo de processamento e de forma direta.
+
+## Predição em Tempo Real 
+
+O usuário fornecerá um dicionário de dados para a API pelo método POST, onde esses dados passarão por tratamento e retornarão uma predição.
+Estrutura da API: 
+
+<img width="910" height="2002" alt="image" src="https://github.com/user-attachments/assets/cf3bbc14-d844-4afe-bc07-d934c4218343" />
+
+Criei uma função de input de dados que herda o método BaseModel, nativo do Pydantic, para melhor validação dos dados.
+A saída do modelo é um dado do tipo float, que pode ser transformado em um arquivo CSV para melhor visualização e organização
+
+# Qual problema essa abordagem resolve?
+
+Fornecer uma API de predição em tempo real permite que quem a consome implemente sistemas que retornem o valor do imóvel instantaneamente no momento da precificação, reduzindo o risco de entrada de dados nulos e a ausência de precificação nos imóveis.
+
+
+## Docker
+
+Para melhor controle das dependências da aplicação, utilizei o Docker para conteinerizar e expor nossa API. Como o arquivo requirements.txt continha diversas dependências desnecessárias e algumas bibliotecas redundantes, utilizei o framework pipreqs para incluir apenas as dependências realmente úteis no deploy.
+Com isso, criei dois arquivos de requisitos: requirements-dev.txt, destinado ao controle de dependências durante o desenvolvimento da aplicação, e requirements-ops.txt, utilizado especificamente no deploy do modelo.
+
+# Pipreqs:
+
+dentro do terminal:
+
+pip install pipreqs
+pipreqs . --force --savepath requirements-ops.txt 
+
+## Dockerfile
+
+Para a criação da imagem Docker, utilizei a seguinte lógica no Dockerfile:
+
+<img width="1618" height="710" alt="image" src="https://github.com/user-attachments/assets/9fb55493-ef93-436b-aa5a-3cfcd8205461" />
+
+Como podemos observar, o requirements-ops.txt foi o arquivo utilizado para a build do contêiner Docker 
+
+# Docker build:
+
+Usando o bash, levantei os seguintes comandos:
+
+docker build -t app-airbnbv2 . # v2 pois nao foi a primeira vez que tentei buildar o conteirner, por conta de problema de redundancia de requirements
+
+dorcker images # para vizualizar as imagens 
+
+docker run <id da imagem> 
 
 
 
