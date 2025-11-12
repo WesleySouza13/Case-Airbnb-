@@ -1,5 +1,8 @@
 <img width="3840" height="2160" alt="image" src="https://github.com/user-attachments/assets/3d68948e-963a-46f0-a261-d1c91d2efc15" />
 
+<img width="906" height="253" alt="image" src="https://github.com/user-attachments/assets/c42979fa-7e96-4c4f-9bc8-fd08a9d7083a" />
+
+
 
 ## Problema de Negócio:
 
@@ -168,10 +171,6 @@ Por exemplo, se estivermos prevendo o preço de um quarto que custa $900, o mode
 
 ## Criação da aplicação e Deploy 
 
-
-<img width="906" height="253" alt="image" src="https://github.com/user-attachments/assets/c42979fa-7e96-4c4f-9bc8-fd08a9d7083a" />
-
-
 Na etapa de deploy da aplicação, a ideia é criar a arquitetura da API utilizando FastAPI, conteinerizar com Docker e Docker Compose e prover na AWS, usando o LocalStack.
 
 A aplicação consistirá em dois gateways para inferência: 
@@ -195,6 +194,7 @@ O arquivo .csv que contém as previsões está presente no diretório /data.
 # Qual problema essa abordagem resolve?
 
 Provendo uma API que faz previsões em batch, permite que setores que possuem arquivos históricos dos hosts possam precificar de forma assertiva, justa, com pouco tempo de processamento e de forma direta.
+
 
 
 
